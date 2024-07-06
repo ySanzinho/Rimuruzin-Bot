@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
+  },
+  "name": "rimuruzin_bot",
+  "version": "1.0.0",
+  "description": "Bot voltado ao mundo de animes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": ".sanzinho",
+  "license": "ISC"
+}
