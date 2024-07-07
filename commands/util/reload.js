@@ -3,12 +3,17 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('reload')
-		.setDescription('Recarrega um comando.')
+		.setDescription('[DONO] Recarrega um comando.')
 		.addStringOption(option => 
 			option.setName('command')
 			.setDescription('The comand to reload')
 			.setRequired(true)),
 	async execute(interaction) {
+		const allowedUserId = '270331100532965377';
+		if (interaction.user.id !== allowedUserId) {
+			return interaction.reply({ content: 'Você não tem permissão para executar esse comando!', ephemeral: true });
+		}
+
 		const commandName = interaction.options.getString('command', true).toLowerCase();
 		const command = interaction.client.commands.get(commandName);
 
