@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('ajuda')
-		.setDescription('[BOT] Mostra a lista de comandos disponíveis'),
+		.setDescription('[BOT] Mostra a lista de comandos disponíveis.'),
 	async execute(interaction) {
 		// Diretório dos comandos
 		const commandsPath = path.join(__dirname, '..', '..', 'commands');

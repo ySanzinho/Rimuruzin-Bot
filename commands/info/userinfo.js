@@ -4,7 +4,7 @@ const { EmbedBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('userinfo')
-        .setDescription('[Discord] Mostra informações sobre o usuário no servidor.')
+        .setDescription('[DISCORD] Mostra informações sobre o usuário no servidor.')
         .addUserOption(option => option.setName('usuario').setDescription('O usuário para obter informações sobre')),
 
     async execute(interaction) {
