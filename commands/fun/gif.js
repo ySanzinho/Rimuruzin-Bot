@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 
 dotenv.config();
-const giphyApiKey = process.env.GIPHY_API_KEY;
+const tenorApiKey = process.env.TENOR_API_KEY;
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -17,17 +17,18 @@ module.exports = {
   async execute(interaction) {
     const palavra = interaction.options.getString('palavra');
 
-    // USO PARA DEBUG
-    // console.log(`Buscando GIF com a palavra-chave: ${palavra}`);
-
     try {
-      const response = await fetch(`https://api.giphy.com/v1/gifs/random?api_key=${giphyApiKey}&tag=${palavra}&rating=g`);
-      const result = await response.json();
+      const response = await fetch(`https://tenor.googleapis.com/v2/search?q=${palavra}&key=${tenorApiKey}&random=true`);
+      const retorno = await response.json();
 
-      // USO PARA DEBUG
-      //console.log('Resposta da API Giphy:', result);
+      // Verificar se a lista de resultados está presente e não está vazia
+      if (!retorno.results || retorno.results.length === 0) {
+        await interaction.reply({ content: `Não foi possível encontrar um GIF para a palavra-chave "${palavra}".`, ephemeral: true });
+        return;
+      }
 
-      const gifUrl = result.data.url;
+      // Acessar o primeiro resultado na lista de resultados
+      const gifUrl = retorno.results[0].media_formats.gif.url;
 
       await interaction.reply(gifUrl)
     } catch (error) {

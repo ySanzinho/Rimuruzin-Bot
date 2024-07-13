@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRow, ActionRowBuilder, Embed } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -18,7 +18,7 @@ module.exports = {
         const nodeVersion = process.version;
         const discordJsVersion = require('discord.js').version;
 
-        const embed = new EmbedBuilder()
+        const embedTecnico = new EmbedBuilder()
             .setColor('#0099ff')
             .setTitle('Informações do Bot')
             .setThumbnail(botAvatar)
@@ -36,6 +36,28 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: `Solicitado por ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) });
 
-        await interaction.reply({ embeds: [embed], ephemeral: false });
+        const embedSobre = new EmbedBuilder()
+            .setColor('#0099ff')
+            .setTitle('Olá, sou o Rimuruzin 👋')
+            .setDescription("Olá sou o Rimuruzin(Para os mais proximos \"Rimuru\"), sou um bot multifuncional para Discord, projetado para melhorar sua experiência de servidor com uma ampla gama de comandos úteis e divertidos. Desde utilidades como informações de usuário e servidor, até comandos de entretenimento como GIFs e memes, Rimuruzin é a ferramenta definitiva para gerenciar e animar sua comunidade no Discord.")
+            .setThumbnail(botAvatar)
+
+        const githubButton = new ButtonBuilder()
+            .setLabel('Github')
+            .setStyle(ButtonStyle.Link)
+            .setURL('https://github.com/ySanzinho/Rimuruzin-Bot') 
+            .setEmoji({
+                id: '1260954780780728331',
+                name: 'github' 
+        });
+
+        const row = new ActionRowBuilder()
+            .addComponents(githubButton)
+
+        await interaction.reply({ 
+            embeds: [embedSobre ,embedTecnico],
+            components: [row],
+            ephemeral: false 
+        });
     },
 };
