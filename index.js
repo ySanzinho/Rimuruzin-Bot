@@ -1,10 +1,11 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-
 //Module "DOTENV" for hidden the information of bot
 const dotenv = require('dotenv');
 dotenv.config();
+
+const fs = require('node:fs');
+const path = require('node:path');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { db } = require('./firebase');
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
