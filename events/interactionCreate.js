@@ -1,4 +1,5 @@
 const { Events } = require('discord.js');
+const { db } = require('../firebase');
 
 module.exports = {
 	name: Events.InteractionCreate,
@@ -13,7 +14,7 @@ module.exports = {
 		}
 
 		try {
-			await command.execute(interaction);
+			await command.execute(interaction, db);
 		} catch (error) {
 			console.error(error);
 			if (interaction.replied || interaction.deferred) {

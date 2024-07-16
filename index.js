@@ -8,7 +8,13 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { db } = require('./firebase');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ 
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent
+	] 
+});
 
 // COMMANDS HANDLING
 client.commands = new Collection();

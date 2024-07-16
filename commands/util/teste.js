@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { doc, getDoc, setDoc } = require('firebase/firestore');
-const { db } = require('../../firebase')
+const { db } = require('../../firebase');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -17,7 +17,11 @@ module.exports = {
         const userId = docSnap.data().id;
         await interaction.reply(`O ID armazenado para o usuário <@${user.id}> é: ${userId}`);
       } else {
-        const data = { id: user.id };
+        const data = { 
+          id: user.id,
+          xp: 0,
+          level: 1
+        };
         await setDoc(userDoc, data);
         await interaction.reply(`Usuário <@${user.id}> cadastrado no banco de dados com ID: ${user.id}`);
       }
